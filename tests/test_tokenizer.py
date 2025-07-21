@@ -239,8 +239,10 @@ def test_unicode_string_with_special_tokens_matches_tiktoken():
 
     reference_ids = reference_tokenizer.encode(test_string, allowed_special={"<|endoftext|>"})
     ids = tokenizer.encode(test_string)
+    print(reference_ids)
+    print(ids)
     assert ids == reference_ids
-
+    
     assert tokenizer.decode(ids) == test_string
     assert reference_tokenizer.decode(reference_ids) == test_string
 

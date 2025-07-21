@@ -20,6 +20,7 @@ from .adapters import (
 
 def test_linear(numpy_snapshot, ts_state_dict, in_embeddings, d_model, d_ff):
     w1_weight = ts_state_dict[0][f"layers.0.ffn.w1.weight"]
+    #print(w1_weight)
     output = run_linear(
         d_in=d_model,
         d_out=d_ff,
@@ -131,6 +132,8 @@ def test_multihead_self_attention_with_rope(
         token_positions=pos_ids,
     )
     # numpy.testing.assert_allclose(actual_output.detach().numpy(), expected_output.detach().numpy(), atol=1e-6)
+    print(actual_output.shape)
+    print(in_embeddings.shape)
     numpy_snapshot.assert_match(actual_output, atol=1e-6)
 
 
